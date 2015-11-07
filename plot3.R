@@ -1,0 +1,7 @@
+x <- range(pc$DateTime)
+y <- range(pc$Sub_metering_1)
+plot(x, y, type="n", xlab="", ylab="Energy sub metering")
+lines(pc$DateTime, pc$Sub_metering_1, type="l")
+lines(pc$DateTime, pc$Sub_metering_2, type="l", col="red")
+lines(pc$DateTime, pc$Sub_metering_3, type="l", col="blue")
+legend("topright", c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"), lty=1, cex=0.8, col=c("black", "red", "blue"))
