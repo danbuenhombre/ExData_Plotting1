@@ -19,11 +19,18 @@ for (i in 3:9) {
 }
 
 # Open a png file
-png("./plot3.png")
+png("./plot4.png")
 
-# set one chart for entire area
-par(mfcol=c(1,1))
+# Set area for four charts
+par(mfcol=c(2,2))
 
+# First chart in the upper left
+# Global Active Power
+plot(pc$DateTime, pc$Global_active_power, type="n", xlab="", ylab="Global Active Power")
+lines(pc$DateTime, pc$Global_active_power, type="l")
+
+# Second chart in the lower left
+# Energy sub metering
 # establish the x,y range for the lines.  
 # Since they're from the same data set they will have the same length
 x <- range(pc$DateTime)
@@ -36,8 +43,22 @@ lines(pc$DateTime, pc$Sub_metering_1, type="l", col="black")
 lines(pc$DateTime, pc$Sub_metering_2, type="l", col="red")
 # sub metering 3 in blue
 lines(pc$DateTime, pc$Sub_metering_3, type="l", col="blue")
-# Ensure border around the legend per the example given
-legend("topright", c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"), lty=1, bty="o", col=c("black", "red", "blue"))
+# No border around the legend per the example given
+legend("topright", c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"), lty=1, bty="n", col=c("black", "red", "blue"))
+
+# Third chart in upper right
+# Voltage
+# set plot without displaying points
+plot(pc$DateTime, pc$Voltage, type="n", xlab="datetime", ylab="Voltage")
+# set line
+lines(pc$DateTime, pc$Voltage, type="l")
+
+# Fourth chart in lower right
+# Global Reactive Power
+# set plot without displaying points
+plot(pc$DateTime, pc$Global_reactive_power, type="n", xlab="datetime", ylab="Global_reactive_power")
+# set line
+lines(pc$DateTime, pc$Global_reactive_power, type="l")
 
 # Close file
 dev.off()
